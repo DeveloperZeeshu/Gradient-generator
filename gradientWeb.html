@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradient Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="main-content">
+        <div class="buttons-content">
+            <button class="btn" id="myButton">
+                #051937
+            </button>
+            <button class="btn" id="myButton2">
+                #008793
+            </button>
+        </div>
+        <h4>Click to Copy Code<h4>
+                <div class="color-code">
+                    background-image: linear-gradient(to right, rgb(92, 145, 229), rgb(152, 63, 198));
+                </div>
+    </div>
+
+    <script>
+        let btn1 = document.getElementById('myButton');
+        let btn2 = document.getElementById('myButton2');
+        let cpyDiv = document.querySelector('.color-code');
+        let rgb1 = "rgb(92, 145, 229)";
+        let rgb2 = "rgb(152, 63, 198)";
+
+        const hexValues = () => {
+            let myHexValues = "0123456789abcdef";
+            let colors = "#";
+            for (let i = 0; i < 6; i++) {
+                colors = colors + myHexValues[Math.floor(Math.random() * 16)];
+            }
+            return colors;
+
+        };
+
+        const handlebtn1 = () => {
+            rgb1 = hexValues();
+            btn1.textContent = rgb1;
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2})`;
+            cpyDiv.textContent = `background-image: linear-gradient(to right, ${rgb1}, ${rgb2})`;
+        };
+
+        const handlebtn2 = () => {
+            rgb2 = hexValues();
+            btn2.textContent = rgb2;
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2})`;
+            cpyDiv.textContent = `background-image: linear-gradient(to right, ${rgb1}, ${rgb2})`;
+        };
+
+        const handleCpy = () => {
+            navigator.clipboard.writeText(cpyDiv.textContent);
+            alert(`${cpydiv} : Copied!`);
+        }
+
+
+        cpyDiv.addEventListener('click', handleCpy);
+
+
+        btn1.addEventListener('click', handlebtn1);
+        btn2.addEventListener('click', handlebtn2);
+
+    </script>
+</body>
+
+</html>
